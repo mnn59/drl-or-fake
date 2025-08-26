@@ -99,7 +99,7 @@ def load_topoinfo(toponame):
     return nodeNum, linkSet, bandwidths, losses
 
 if __name__ == '__main__':
-    print "testbed initializing ..."
+    print ("testbed initializing ...")
     toponame = sys.argv[1]
     if toponame == "test":
         nodeNum = 4
@@ -108,7 +108,7 @@ if __name__ == '__main__':
         losses = [0, 0, 0, 0] # 0% must be int
     else:
         nodeNum, linkSet, bandwidths, losses = load_topoinfo(toponame)
-    print "topoinfo loading finished."
+    print ("topoinfo loading finished.")
     requests_pq = [] # put the popens of requests' server and client process
     
     topo = CustomTopo(nodeNum, linkSet, bandwidths, losses)
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     
     
     # build communication with DRL client
-    print "waiting to simenv"
+    print ("waiting to simenv")
     # If using unique server for testbed, set TCP_IP to the server IP 
     TCP_IP = "127.0.0.1"
     TCP_PORT = 5000
@@ -162,12 +162,12 @@ if __name__ == '__main__':
         
         # For Abi link failure & demand change test
         # we let testbed send the failure information to simenv for simple implementation 
-        if time_step == 10000:
-            '''
+        if time_step == 1000:  # it was: 10000
+            
             # link failue
             net.configLinkStatus('s1', 's5', 'down')
             ret['change'] = 'link_failure'
-            '''
+            
             # demand change
             #ret['change'] = "demand_change"
         
