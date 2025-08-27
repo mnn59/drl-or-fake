@@ -41,8 +41,8 @@ def main():
     
 
     torch.set_num_threads(1)
-    # device = torch.device("cuda:0" if args.cuda else "cpu")
-    device = torch.device("cuda:0")
+    device = torch.device("cuda:0" if args.cuda else "cpu")
+    # device = torch.device("cuda:0")
     print("device:" , device)
 
     # set up environment
