@@ -1,6 +1,6 @@
 __pycache__/
 
 
-model/
+# model/
 data_process
 .ipynb_checkpoints/
