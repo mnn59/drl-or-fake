@@ -554,8 +554,8 @@ class NetEnv():
         # setup flow generating step
         if toponame == "Abi":
             self._request_demands = [[100], [1500], [1500], [500]]
-            self._request_times = [[50], [50], [50], [50]] # heavy load
-            #self._request_times = [[10], [10], [10], [10]] # light load
+            # self._request_times = [[50], [50], [50], [50]] # heavy load
+            self._request_times = [[10], [10], [10], [10]] # light load
             #self._request_times = [[30], [30], [30], [30]] # mid load
         elif toponame == "GEA":
             self._request_demands = [[100], [1500], [1500], [500]]
