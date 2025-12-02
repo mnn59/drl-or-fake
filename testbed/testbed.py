@@ -162,14 +162,17 @@ if __name__ == '__main__':
         
         # For Abi link failure & demand change test
         # we let testbed send the failure information to simenv for simple implementation 
-        if time_step == 1000:  # it was: 10000
+        if time_step == 10000:  
             
             # link failue
-            net.configLinkStatus('s1', 's5', 'down')
-            ret['change'] = 'link_failure'
+            # net.configLinkStatus('s1', 's5', 'down')
+            # ret['change'] = 'link_failure'
             
             # demand change
-            #ret['change'] = "demand_change"
+            ret['change'] = "demand_change"
+
+            # initialization
+            # pass
         
         
         msg = json.dumps(ret)
