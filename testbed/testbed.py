@@ -169,10 +169,10 @@ if __name__ == '__main__':
             # ret['change'] = 'link_failure'
             
             # demand change
-            ret['change'] = "demand_change"
+            # ret['change'] = "demand_change"
 
             # initialization
-            # pass
+            pass
         
         
         msg = json.dumps(ret)
