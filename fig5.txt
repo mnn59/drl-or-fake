@@ -1,0 +1,101 @@
+python3 fig5.py --log-dir ./drl-or/log --output
+ fig5_comparison.png
+
+Log directory: ./drl-or/log
+
+================================================================================
+PLOTTING FIGURE 5: PPO vs MAPPO Comparison
+================================================================================
+
+Processing: initialization vs mappo_initialization
+  PPO type1: delay avg=13.81ms
+  MAPPO type1: delay avg=12.89ms
+  PPO type1: throughput avg=0.9984
+  MAPPO type1: throughput avg=0.9845
+  PPO type2: delay avg=14.33ms
+  MAPPO type2: delay avg=13.34ms
+  PPO type2: throughput avg=0.9842
+  MAPPO type2: throughput avg=0.9943
+  PPO type3: delay avg=14.23ms
+  MAPPO type3: delay avg=12.96ms
+  PPO type3: throughput avg=0.9820
+  MAPPO type3: throughput avg=0.9916
+
+Processing: link_failure vs mappo_link_failure
+  PPO type1: delay avg=12.37ms
+  MAPPO type1: delay avg=12.59ms
+  PPO type1: throughput avg=0.9904
+  MAPPO type1: throughput avg=0.9900
+  PPO type2: delay avg=12.28ms
+  MAPPO type2: delay avg=12.85ms
+  PPO type2: throughput avg=1.0025
+  MAPPO type2: throughput avg=1.0015
+  PPO type3: delay avg=12.34ms
+  MAPPO type3: delay avg=12.35ms
+  PPO type3: throughput avg=1.0022
+  MAPPO type3: throughput avg=1.0015
+
+Processing: traffic_change vs mappo_traffic_change
+  PPO type1: delay avg=31.01ms
+  MAPPO type1: delay avg=29.61ms
+  PPO type1: throughput avg=0.9756
+  MAPPO type1: throughput avg=0.9689
+  PPO type2: delay avg=31.47ms
+  MAPPO type2: delay avg=32.06ms
+  PPO type2: throughput avg=0.9505
+  MAPPO type2: throughput avg=0.9532
+  PPO type3: delay avg=31.82ms
+  MAPPO type3: delay avg=31.04ms
+  PPO type3: throughput avg=0.9477
+  MAPPO type3: throughput avg=0.9547
+
+✓ Figure saved to: fig5_comparison.png
+
+====================================================================================================
+SUMMARY STATISTICS: PPO vs MAPPO
+====================================================================================================
+
+INITIALIZATION
+----------------------------------------------------------------------------------------------------
+Metric               Type     PPO                  MAPPO                Diff            Winner    
+----------------------------------------------------------------------------------------------------
+Delay (ms)           0        13.81                12.89                +0.92ms       MAPPO     
+Delay (ms)           1        14.33                13.34                +0.99ms       MAPPO     
+Delay (ms)           2        14.23                12.96                +1.26ms       MAPPO     
+Delay (ms)           3        13.76                13.00                +0.76ms       MAPPO     
+Throughput           0        0.9984               0.9845               -0.0139       PPO       
+Throughput           1        0.9842               0.9943               +0.0101       MAPPO     
+Throughput           2        0.9820               0.9916               +0.0095       MAPPO     
+Throughput           3        0.9907               0.9934               +0.0027       MAPPO     
+Global Reward        All      -0.5157              -1.2326              -0.7169       PPO       
+Unsafe Rate (%)      All      3.84                 18.11                -14.27%       PPO       
+
+LINK FAILURE
+----------------------------------------------------------------------------------------------------
+Metric               Type     PPO                  MAPPO                Diff            Winner    
+----------------------------------------------------------------------------------------------------
+Delay (ms)           0        12.37                12.59                -0.22ms       PPO       
+Delay (ms)           1        12.28                12.85                -0.57ms       PPO       
+Delay (ms)           2        12.34                12.35                -0.01ms       PPO       
+Delay (ms)           3        12.37                12.87                -0.50ms       PPO       
+Throughput           0        0.9904               0.9900               -0.0003       PPO       
+Throughput           1        1.0025               1.0015               -0.0010       PPO       
+Throughput           2        1.0022               1.0015               -0.0007       PPO       
+Throughput           3        1.0015               1.0017               +0.0002       MAPPO     
+Global Reward        All      -0.6695              -0.4597              +0.2098       MAPPO     
+Unsafe Rate (%)      All      6.92                 2.72                 +4.20%       MAPPO     
+
+TRAFFIC CHANGE
+----------------------------------------------------------------------------------------------------
+Metric               Type     PPO                  MAPPO                Diff            Winner    
+----------------------------------------------------------------------------------------------------
+Delay (ms)           0        31.01                29.61                +1.39ms       MAPPO     
+Delay (ms)           1        31.47                32.06                -0.59ms       PPO       
+Delay (ms)           2        31.82                31.04                +0.78ms       MAPPO     
+Delay (ms)           3        31.57                31.46                +0.12ms       MAPPO     
+Throughput           0        0.9756               0.9689               -0.0066       PPO       
+Throughput           1        0.9505               0.9532               +0.0027       MAPPO     
+Throughput           2        0.9477               0.9547               +0.0070       MAPPO     
+Throughput           3        0.9717               0.9749               +0.0032       MAPPO     
+Global Reward        All      -0.7026              -0.5426              +0.1600       MAPPO     
+Unsafe Rate (%)      All      6.08                 3.04                 +3.04%       MAPPO 

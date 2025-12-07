@@ -1,0 +1,166 @@
+python3 compare_ppo_mappo.py --log-dir ./drl-or/log --output comparison_all_scenarios.png
+
+Log directory: ./drl-or/log
+Available scenarios:
+  ✓ initialization
+  ✓ link_failure
+  ✓ mappo_initialization
+  ✓ mappo_link_failure
+  ✓ mappo_traffic_change
+  ✓ traffic_change
+
+====================================================================================================
+COMPARING PPO vs MAPPO-CTDE - All Scenarios
+====================================================================================================
+
+[ROW 1: LATENCY COMPARISON - Type 1 (Latency-sensitive)]
+
+  Initialization:
+    PPO: avg=13.81ms, samples=59887
+    MAPPO: avg=12.89ms, samples=60304
+    → Improvement: +6.69%
+
+  Link Failure:
+    PPO: avg=12.37ms, samples=35788
+    MAPPO: avg=12.59ms, samples=36262
+    → Improvement: -1.77%
+
+  Traffic Change:
+    PPO: avg=31.01ms, samples=35962
+    MAPPO: avg=29.61ms, samples=36262
+    → Improvement: +4.50%
+
+[ROW 2: THROUGHPUT COMPARISON - Type 2 (Throughput-sensitive)]
+
+  Initialization:
+    PPO: avg=0.9842, samples=89882
+    MAPPO: avg=0.9943, samples=89656
+    → Improvement: +1.02%
+
+  Link Failure:
+    PPO: avg=1.0025, samples=54152
+    MAPPO: avg=1.0015, samples=53505
+    → Improvement: -0.10%
+
+  Traffic Change:
+    PPO: avg=0.9505, samples=53703
+    MAPPO: avg=0.9532, samples=53505
+    → Improvement: +0.29%
+
+[ROW 3: GLOBAL REWARD COMPARISON]
+
+  Initialization:
+    PPO: avg=-0.5157
+    MAPPO: avg=-1.2326
+
+  Link Failure:
+    PPO: avg=-0.6695
+    MAPPO: avg=-0.4597
+
+  Traffic Change:
+    PPO: avg=-0.7026
+    MAPPO: avg=-0.5426
+
+[ROW 4: UNSAFE ROUTE RATE COMPARISON]
+
+  Initialization:
+    Reading PPO circle.log... done (303840 samples)
+    Reading MAPPO circle.log... done (303840 samples)
+    PPO: total unsafe rate = 3.84%
+    MAPPO: total unsafe rate = 18.11%
+
+  Link Failure:
+    Reading PPO circle.log... done (183840 samples)
+    Reading MAPPO circle.log... done (183840 samples)
+    PPO: total unsafe rate = 6.92%
+    MAPPO: total unsafe rate = 2.72%
+
+  Traffic Change:
+    Reading PPO circle.log... done (183840 samples)
+    Reading MAPPO circle.log... done (183840 samples)
+    PPO: total unsafe rate = 6.08%
+    MAPPO: total unsafe rate = 3.04%
+
+====================================================================================================
+✓ Figure saved to: comparison_all_scenarios.png
+====================================================================================================
+
+====================================================================================================
+MAPPO TRAINING METRICS (Only available in MAPPO)
+====================================================================================================
+
+[VALUE LOSS]
+  Initialization: avg=88.0527, final=70.3045
+  Link Failure: avg=54.3952, final=7.5297
+  Traffic Change: avg=101.4805, final=44.9475
+
+[ACTION LOSS]
+  Initialization: avg=-0.0014, final=-0.0050
+  Link Failure: avg=0.0080, final=0.0034
+  Traffic Change: avg=0.0175, final=0.0143
+
+[IMPORTANCE RATIO]
+  Initialization: avg=3.9806, final=3.9924
+  Link Failure: avg=0.9994, final=0.9999
+  Traffic Change: avg=0.9996, final=0.9999
+
+====================================================================================================
+✓ Figure saved to: mappo_training_metrics.png
+====================================================================================================
+
+========================================================================================================================
+COMPREHENSIVE SUMMARY TABLE: PPO vs MAPPO-CTDE
+========================================================================================================================
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  INITIALIZATION
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Metric                    Flow Type    PPO             MAPPO           Improvement     Better    
+  --------------------------------------------------------------------------------------------------------------
+  Latency (ms)              Type 1       13.81           12.89           +6.69%         MAPPO ✓   
+  Latency (ms)              Type 2       14.33           13.34           +6.92%         MAPPO ✓   
+  Latency (ms)              Type 3       14.23           12.96           +8.87%         MAPPO ✓   
+  Latency (ms)              Type 4       13.76           13.00           +5.53%         MAPPO ✓   
+  Throughput Ratio          Type 1       0.9984          0.9845          -1.39%         PPO ✓     
+  Throughput Ratio          Type 2       0.9842          0.9943          +1.02%         MAPPO ✓   
+  Throughput Ratio          Type 3       0.9820          0.9916          +0.97%         MAPPO ✓   
+  Throughput Ratio          Type 4       0.9907          0.9934          +0.28%         MAPPO ✓   
+  Global Reward             All          -0.5157         -1.2326         -139.03%         PPO ✓     
+  Unsafe Rate (%)           All          3.84            18.11           -14.27%         PPO ✓     
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  LINK FAILURE
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Metric                    Flow Type    PPO             MAPPO           Improvement     Better    
+  --------------------------------------------------------------------------------------------------------------
+  Latency (ms)              Type 1       12.37           12.59           -1.77%         PPO ✓     
+  Latency (ms)              Type 2       12.28           12.85           -4.65%         PPO ✓     
+  Latency (ms)              Type 3       12.34           12.35           -0.09%         PPO ✓     
+  Latency (ms)              Type 4       12.37           12.87           -4.02%         PPO ✓     
+  Throughput Ratio          Type 1       0.9904          0.9900          -0.03%         PPO ✓     
+  Throughput Ratio          Type 2       1.0025          1.0015          -0.10%         PPO ✓     
+  Throughput Ratio          Type 3       1.0022          1.0015          -0.07%         PPO ✓     
+  Throughput Ratio          Type 4       1.0015          1.0017          +0.02%         MAPPO ✓   
+  Global Reward             All          -0.6695         -0.4597         +31.34%         MAPPO ✓   
+  Unsafe Rate (%)           All          6.92            2.72            +4.20%         MAPPO ✓   
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  TRAFFIC CHANGE
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Metric                    Flow Type    PPO             MAPPO           Improvement     Better    
+  --------------------------------------------------------------------------------------------------------------
+  Latency (ms)              Type 1       31.01           29.61           +4.50%         MAPPO ✓   
+  Latency (ms)              Type 2       31.47           32.06           -1.88%         PPO ✓     
+  Latency (ms)              Type 3       31.82           31.04           +2.44%         MAPPO ✓   
+  Latency (ms)              Type 4       31.57           31.46           +0.37%         MAPPO ✓   
+  Throughput Ratio          Type 1       0.9756          0.9689          -0.68%         PPO ✓     
+  Throughput Ratio          Type 2       0.9505          0.9532          +0.29%         MAPPO ✓   
+  Throughput Ratio          Type 3       0.9477          0.9547          +0.74%         MAPPO ✓   
+  Throughput Ratio          Type 4       0.9717          0.9749          +0.33%         MAPPO ✓   
+  Global Reward             All          -0.7026         -0.5426         +22.77%         MAPPO ✓   
+  Unsafe Rate (%)           All          6.08            3.04            +3.04%         MAPPO ✓   
+
+========================================================================================================================
+Note: For Latency and Unsafe Rate, LOWER is better (positive improvement = MAPPO better)
+      For Throughput and Global Reward, HIGHER is better (positive improvement = MAPPO better)
+========================================================================================================================
