@@ -1,0 +1,216 @@
+
+================================================================================
+MAPPO TRAINING DIAGNOSTICS: mappo_initialization
+================================================================================
+
+[1] IMPORTANCE RATIO ANALYSIS
+------------------------------------------------------------
+  Total samples: 585
+  Mean ratio: 3.9806 (should be ~1.0)
+  Std ratio: 0.0162 (should be small)
+  Min/Max: 3.9070 / 4.1282
+  
+  Distribution:
+    Normal [0.8-1.2]: 0.0%
+    Too high (>1.5): 100.0%
+    Too low (<0.5): 0.0%
+
+  ⚠️  WARNING: Mean ratio is far from 1.0!
+     This indicates PPO clipping may not be working correctly.
+     Policy is changing too aggressively between updates.
+
+  ⚠️  WARNING: 100.0% of ratios are >1.5!
+     This causes training instability.
+
+[2] VALUE LOSS ANALYSIS
+------------------------------------------------------------
+  Total updates: 585
+  Mean value loss: 88.0527
+  First quarter avg: 117.6194
+  Last quarter avg: 79.8057
+  Reduction: 32.1%
+
+  ⚠️  WARNING: Value loss is still high (79.8)!
+     The centralized critic is not learning well.
+     Consider:
+       - Lower critic learning rate
+       - More training steps
+       - Check global state construction
+
+[3] ACTION LOSS (POLICY LOSS) ANALYSIS
+------------------------------------------------------------
+  Total updates: 585
+  Mean action loss: -0.001422
+  Std: 0.122664
+  Min/Max: -0.399778 / 0.378490
+  Oscillation rate: 65.1%
+
+[4] UNSAFE ROUTE (CIRCLE) ANALYSIS
+------------------------------------------------------------
+  Total samples: 303840
+  Overall unsafe rate: 18.11%
+
+  Unsafe rate by training phase:
+    Early (0-25%): 24.32%
+    Mid-Early (25-50%): 19.24%
+    Mid-Late (50-75%): 17.07%
+    Late (75-100%): 11.84%
+
+  ✅ Unsafe rate IMPROVING: 51.3% reduction
+
+[5] GLOBAL REWARD ANALYSIS
+------------------------------------------------------------
+  Total samples: 303840
+  Mean reward: -1.2326
+  Early phase avg: -1.6397
+  Late phase avg: -0.8756
+
+  ✅ Reward IMPROVING over training
+
+================================================================================
+SUMMARY & RECOMMENDATIONS
+================================================================================
+
+  ❌ Issues found:
+     1. High importance ratio - clipping not effective
+     2. High value loss - critic not converging
+     3. High unsafe rate (>10%)
+
+  📋 Recommended fixes:
+     1. Lower learning rates: --actor-lr 3e-4 --critic-lr 1e-4
+     2. Reduce PPO epochs: --ppo-epoch 10
+     3. Add gradient clipping: --max-grad-norm 0.5
+     4. Pre-train critic separately before online training
+     5. Use value normalization: --use-popart
+
+================================================================================
+MAPPO TRAINING DIAGNOSTICS: mappo_link_failure
+================================================================================
+
+[1] IMPORTANCE RATIO ANALYSIS
+------------------------------------------------------------
+  Total samples: 351
+  Mean ratio: 0.9994 (should be ~1.0)
+  Std ratio: 0.0007 (should be small)
+  Min/Max: 0.9963 / 1.0010
+  
+  Distribution:
+    Normal [0.8-1.2]: 100.0%
+    Too high (>1.5): 0.0%
+    Too low (<0.5): 0.0%
+
+[2] VALUE LOSS ANALYSIS
+------------------------------------------------------------
+  Total updates: 351
+  Mean value loss: 54.3952
+  First quarter avg: 187.0649
+  Last quarter avg: 7.4126
+  Reduction: 96.0%
+
+[3] ACTION LOSS (POLICY LOSS) ANALYSIS
+------------------------------------------------------------
+  Total updates: 351
+  Mean action loss: 0.007981
+  Std: 0.032734
+  Min/Max: -0.088296 / 0.109489
+  Oscillation rate: 66.9%
+
+[4] UNSAFE ROUTE (CIRCLE) ANALYSIS
+------------------------------------------------------------
+  Total samples: 183840
+  Overall unsafe rate: 2.72%
+
+  Unsafe rate by training phase:
+    Early (0-25%): 7.29%
+    Mid-Early (25-50%): 2.14%
+    Mid-Late (50-75%): 0.92%
+    Late (75-100%): 0.51%
+
+  ✅ Unsafe rate IMPROVING: 93.0% reduction
+
+[5] GLOBAL REWARD ANALYSIS
+------------------------------------------------------------
+  Total samples: 183840
+  Mean reward: -0.4597
+  Early phase avg: -0.8338
+  Late phase avg: -0.2970
+
+  ✅ Reward IMPROVING over training
+
+================================================================================
+SUMMARY & RECOMMENDATIONS
+================================================================================
+
+  ✅ No major issues detected!
+
+================================================================================
+MAPPO TRAINING DIAGNOSTICS: mappo_traffic_change
+================================================================================
+
+[1] IMPORTANCE RATIO ANALYSIS
+------------------------------------------------------------
+  Total samples: 351
+  Mean ratio: 0.9996 (should be ~1.0)
+  Std ratio: 0.0008 (should be small)
+  Min/Max: 0.9949 / 1.0018
+  
+  Distribution:
+    Normal [0.8-1.2]: 100.0%
+    Too high (>1.5): 0.0%
+    Too low (<0.5): 0.0%
+
+[2] VALUE LOSS ANALYSIS
+------------------------------------------------------------
+  Total updates: 351
+  Mean value loss: 101.4805
+  First quarter avg: 265.4921
+  Last quarter avg: 44.3670
+  Reduction: 83.3%
+
+[3] ACTION LOSS (POLICY LOSS) ANALYSIS
+------------------------------------------------------------
+  Total updates: 351
+  Mean action loss: 0.017517
+  Std: 0.032396
+  Min/Max: -0.080272 / 0.126627
+  Oscillation rate: 68.6%
+
+[4] UNSAFE ROUTE (CIRCLE) ANALYSIS
+------------------------------------------------------------
+  Total samples: 183840
+  Overall unsafe rate: 3.04%
+
+  Unsafe rate by training phase:
+    Early (0-25%): 7.07%
+    Mid-Early (25-50%): 2.21%
+    Mid-Late (50-75%): 1.65%
+    Late (75-100%): 1.22%
+
+  ✅ Unsafe rate IMPROVING: 82.7% reduction
+
+[5] GLOBAL REWARD ANALYSIS
+------------------------------------------------------------
+  Total samples: 183840
+  Mean reward: -0.5426
+  Early phase avg: -0.9151
+  Late phase avg: -0.3882
+
+  ✅ Reward IMPROVING over training
+
+================================================================================
+SUMMARY & RECOMMENDATIONS
+================================================================================
+
+  ✅ No major issues detected!
+
+====================================================================================================
+CROSS-SCENARIO COMPARISON
+====================================================================================================
+
+Scenario                  Ratio        Value Loss      Unsafe %     Reward      
+----------------------------------------------------------------------------------------------------
+mappo_initialization      3.981        88.05           18.11%       -1.2326     
+mappo_link_failure        0.999        54.40           2.72%        -0.4597     
+mappo_traffic_change      1.000        101.48          3.04%        -0.5426     
+
+====================================================================================================
